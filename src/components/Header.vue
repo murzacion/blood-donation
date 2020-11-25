@@ -56,13 +56,13 @@
 
     <v-btn-toggle rounded background-color="white">
       <v-btn v-if="!logged" @click="goLogin()" target="_blank" text>
-        <span class="mr-2 text-red-600">Log in</span>
+        <span class=" text-red-600">Log in</span>
       </v-btn>
       <v-btn v-if="!logged" @click="goRegister()" target="_blank" text>
-        <span class="mr-2 text-red-600">Sing up</span>
+        <span class=" text-red-600">Sing up</span>
       </v-btn>
       <v-btn v-if="logged" @click="signOut()" target="_blank" text>
-        <span class="mr-2 text-red-600">Sing out</span>
+        <span class="text-red-600">Sing out</span>
       </v-btn>
     </v-btn-toggle>
   </v-app-bar>

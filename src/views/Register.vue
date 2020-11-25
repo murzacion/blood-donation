@@ -94,9 +94,9 @@ export default {
             this.signUpData["email"],
             this.signUpData["password"]
           );
-        console.log(user);
+        (await user).additionalUserInfo;
         this.addData();
-        this.$router.push({ name: "Profile" });
+        this.$router.replace({ name: "Profile" });
       } catch (err) {
         console.log(err);
       }
