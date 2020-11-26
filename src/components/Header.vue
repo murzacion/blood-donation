@@ -64,7 +64,7 @@
       <DonationForm v-if="logged" />
       <router-link to="/DonationList">
         <v-btn v-if="logged" rounded target="_blank" text>
-          <span>DonationList</span>
+          <span>Donation List</span>
         </v-btn>
       </router-link>
     </div>
