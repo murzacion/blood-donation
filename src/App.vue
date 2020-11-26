@@ -11,6 +11,10 @@ export default {
   name: "App",
   data: () => ({
     //
-  })
+  }),
+  created() {
+    this.$store.dispatch("IMPORT_HOSPITALS");
+    this.$store.dispatch("IMPORT_DONATORS");
+  }
 };
 </script>

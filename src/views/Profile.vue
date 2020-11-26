@@ -20,7 +20,7 @@
                   date.city
                 }}</v-list-item-subtitle>
                 <v-list-item-subtitle class="pt-1">{{
-                  date.blood
+                  date.hospital
                 }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
@@ -53,7 +53,7 @@ export default {
         if (user) {
           firebase
             .database()
-            .ref("users/" + user.uid)
+            .ref("doctors/" + user.uid)
             .on("value", snapshot => {
               const data = snapshot.val() || [];
               this.date = data;

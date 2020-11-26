@@ -1,6 +1,6 @@
 <template>
   <v-app-bar app color="red darken-1" dark>
-    <div class="md:hidden">
+    <div class="xl:hidden">
       <v-menu bottom left>
         <template v-slot:activator="{ on, attrs }">
           <v-btn dark icon v-bind="attrs" v-on="on">
@@ -18,15 +18,25 @@
           </v-list-item>
           <v-list-item>
             <router-link to="/List">
-              <v-btn rounded target="_blank" text>
+              <v-btn v-if="logged" rounded target="_blank" text>
                 <span>Donor list</span>
               </v-btn>
             </router-link>
           </v-list-item>
           <v-list-item v-if="logged">
+            <Alert />
+          </v-list-item>
+          <v-list-item v-if="logged">
             <router-link to="/Profile">
               <v-btn rounded target="_blank" text>
                 <span>Profile</span>
+              </v-btn>
+            </router-link>
+          </v-list-item>
+          <v-list-item v-if="logged">
+            <router-link to="/DonationList">
+              <v-btn v-if="logged" rounded target="_blank" text>
+                <span>DonationList</span>
               </v-btn>
             </router-link>
           </v-list-item>
@@ -41,13 +51,20 @@
         <span>Home</span>
       </v-btn>
       <router-link to="/List">
-        <v-btn rounded target="_blank" text>
+        <v-btn v-if="logged" rounded target="_blank" text>
           <span>Donor list</span>
         </v-btn>
       </router-link>
       <router-link to="/Profile">
         <v-btn v-if="logged" rounded target="_blank" text>
           <span>Profile</span>
+        </v-btn>
+      </router-link>
+      <Alert v-if="logged" />
+      <DonationForm v-if="logged" />
+      <router-link to="/DonationList">
+        <v-btn v-if="logged" rounded target="_blank" text>
+          <span>DonationList</span>
         </v-btn>
       </router-link>
     </div>
@@ -68,13 +85,20 @@
   </v-app-bar>
 </template>
 <script>
+import Alert from "./Alert";
+import DonationForm from "./DonationForm";
 import firebase from "firebase/app";
 import "firebase/auth";
 export default {
   name: "Header",
+  components: {
+    Alert,
+    DonationForm
+  },
   data() {
     return {
-      logged: false
+      logged: false,
+      dialog: false
     };
   },
   mounted() {

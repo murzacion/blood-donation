@@ -8,21 +8,23 @@
             <v-list-item color="rgba(0, 0, 0, .4)">
               <v-list-item-content>
                 <v-list-item-title class="title">
-                  {{ d.name }}
+                  {{ d.donorid }}
                 </v-list-item-title>
-                <v-list-item-subtitle class="pt-1">{{
-                  d.phone
-                }}</v-list-item-subtitle>
                 <v-list-item-subtitle class="pt-1">{{
                   d.blood
                 }}</v-list-item-subtitle>
                 <v-list-item-subtitle class="pt-1">{{
-                  d.hospital
+                  d.amount
                 }}</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
           </v-col>
         </v-row>
+        <v-card-actions>
+          <v-btn color="green" outlined rounded text>
+            Use
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </div>
   </div>
@@ -48,7 +50,7 @@ export default {
     async getData() {
       let aux = [];
       var database = firebase.database();
-      var ref = database.ref("users");
+      var ref = database.ref("donation");
       ref.on("value", function(snapshot) {
         snapshot.forEach(function(partialSnap) {
           let data = partialSnap.val();

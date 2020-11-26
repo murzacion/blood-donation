@@ -67,6 +67,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(data => {
           console.log(data);
+          this.$store.dispatch("IMPORT_DONATORS");
           this.$router.replace({ name: "Profile" });
         })
         .catch(error => {

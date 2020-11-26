@@ -47,8 +47,8 @@
             :items="items"
             :rules="rules"
             outlined
-            v-model="signUpData.blood"
-            label="Blood Group"
+            v-model="signUpData.hospital"
+            label="Hospital"
           ></v-select>
         </v-form>
       </v-card>
@@ -80,10 +80,14 @@ export default {
         surname: "",
         city: "",
         phone: "",
-        blood: ""
-      },
-      items: ["A+", "O+", "B+", "AB+", "A-", "O-", "B-", "AB-"]
+        hospital: ""
+      }
     };
+  },
+  computed: {
+    items() {
+      return this.$store.getters.getHospitals;
+    }
   },
   methods: {
     async singup() {
@@ -104,7 +108,7 @@ export default {
     addData() {
       firebase
         .database()
-        .ref("users/" + firebase.auth().currentUser.uid)
+        .ref("doctors/" + firebase.auth().currentUser.uid)
         .set(
           {
             email: this.signUpData["email"],
@@ -112,7 +116,7 @@ export default {
             surname: this.signUpData["surname"],
             city: this.signUpData["city"],
             phone: this.signUpData["phone"],
-            blood: this.signUpData["blood"]
+            hospital: this.signUpData["hospital"]
           },
           error => {
             if (error) {
